@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650.0" prefWidth="850.0" style="-fx-background-color: #122742;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+      <TabPane fx:id="mainTabPane" styleClass="bg-atas" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          
+          <Tab styleClass="bg-atas" text="Data Pelanggan">
+            <content>
+                <fx:include fx:id="pelangganTab" source="PelangganView.fxml" />
+            </content>
+          </Tab>
+          
+          <Tab styleClass="bg-atas" text="Data Buku">
+            <content>
+                <fx:include fx:id="bukuTab" source="BukuView.fxml" />
+            </content>
+          </Tab>
+            
+          <Tab fx:id="tabPenjualan" styleClass="bg-atas" text="Data Penjualan">
+              <content>
+                <fx:include fx:id="penjualanTab" source="PenjualanView.fxml" />
+              </content>
+          </Tab>
+            
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
