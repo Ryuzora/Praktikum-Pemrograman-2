@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" style="-fx-background-color: #122742;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PenjualanController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <Label text="Transaksi Penjualan" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="22.0" />
+         </font>
+      </Label>
+      <Separator prefWidth="200.0" />
+
+      <!-- Form Grid (2 Columns) -->
+      <GridPane hgap="20.0" vgap="10.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="80.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="250.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="80.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="200.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <!-- Column 1 -->
+            <Label text="Pelanggan:" textFill="WHITE" />
+            <ComboBox fx:id="cbPelanggan" prefWidth="300.0" promptText="-- Pilih Pelanggan --" style="-fx-background-radius: 5; -fx-border-color: #cccccc; -fx-border-radius: 5;" GridPane.columnIndex="1" />
+            
+            <Label text="Buku:" textFill="WHITE" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cbBuku" prefWidth="300.0" promptText="-- Pilih Buku --" style="-fx-background-radius: 5; -fx-border-color: #cccccc; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Label text="Tanggal:" textFill="WHITE" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dpTanggal" prefWidth="300.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            
+            <!-- Column 2 -->
+            <Label text="Jumlah:" textFill="WHITE" GridPane.columnIndex="2" />
+            <TextField fx:id="txtJumlah" promptText="Qty" style="-fx-background-radius: 5; -fx-border-color: #cccccc; -fx-border-radius: 5;" GridPane.columnIndex="3" />
+            
+            <Label text="Total Harga:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtTotalHarga" editable="false" promptText="Auto Calc" style="-fx-background-color: #e0e0e0; -fx-background-radius: 5; -fx-border-color: #cccccc; -fx-border-radius: 5;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+
+      <!-- Buttons -->
+      <HBox spacing="10.0">
+         <children>
+            <Button onAction="#onAdd" prefWidth="100.0" style="-fx-background-color: #122742; -fx-border-color: fff; -fx-border-radius: 50;" text="Transaksi" textFill="WHITE" />
+            <Button onAction="#onEdit" prefWidth="100.0" style="-fx-background-color: #122742; -fx-border-color: fff; -fx-border-radius: 50;" text="Update" textFill="WHITE" />
+            <Button onAction="#onDelete" prefWidth="100.0" style="-fx-background-color: #122742; -fx-border-color: fff; -fx-border-radius: 50;" text="Hapus" textFill="WHITE" />
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+
+      <Separator prefWidth="200.0" />
+
+      <!-- Search & Refresh -->
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+         <children>
+            <Label style="-fx-font-weight: bold;" text="History:" textFill="WHITE" />
+            <TextField fx:id="txtSearch" promptText="Cari transaksi..." style="-fx-background-radius: 15; -fx-border-radius: 15;" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+
+      <!-- Table -->
+      <TableView fx:id="tblPenjualan" styleClass="tablesss" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="colPelanggan" prefWidth="200.0" text="Pelanggan" />
+          <TableColumn fx:id="colBuku" prefWidth="200.0" text="Buku" />
+          <TableColumn fx:id="colJumlah" prefWidth="80.0" text="Qty" />
+          <TableColumn fx:id="colTotalHarga" prefWidth="120.0" text="Total" />
+          <TableColumn fx:id="colTanggal" prefWidth="100.0" text="Tanggal" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+
+      <!-- Footer Summary -->
+      <HBox alignment="CENTER_LEFT" spacing="20.0">
+         <children>
+            <Label fx:id="lblTotal" text="Total Transaksi: 0" textFill="#777777">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPendapatan" text="Total Pendapatan: Rp 0" textFill="#2E7D32">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</VBox>
